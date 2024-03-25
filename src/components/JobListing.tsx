@@ -1,5 +1,6 @@
 /** @format */
 
+import { useState } from "react";
 import { Job } from "../interfaces/Job";
 
 interface JobListingProps {
@@ -8,6 +9,18 @@ interface JobListingProps {
 
 const JobListing = ({ job }: JobListingProps) => {
   const { id, type, title, salary, description, location } = job;
+  const [showFullDescription, setShowFullDescription] =
+    useState<boolean>(false);
+
+  let descriptionContent = description;
+
+  if (!showFullDescription) {
+    descriptionContent = description.substring(0, 90) + "...";
+  }
+
+  const toggleDescriptionHandler = () => {
+    setShowFullDescription((prevState) => !prevState);
+  };
 
   return (
     <div key={id} className='bg-white rounded-xl shadow-md relative'>
@@ -17,7 +30,14 @@ const JobListing = ({ job }: JobListingProps) => {
           <h3 className='text-xl font-bold'>{title}</h3>
         </div>
 
-        <div className='mb-5'>{description}</div>
+        <div className='mb-5'>{descriptionContent}</div>
+
+        <button
+          onClick={toggleDescriptionHandler}
+          className='text-indigo-500 mb-5 hover:text-indigoo-600'
+        >
+          Show {showFullDescription ? "Less" : "More"}
+        </button>
 
         <h3 className='text-indigo-500 mb-2'>{salary} / Year</h3>
 
