@@ -1,8 +1,9 @@
 /** @format */
-
 import { useState } from "react";
-import { Job } from "../interfaces/Job";
+import { Link } from "react-router-dom";
 import { FaMapMarker } from "react-icons/fa";
+
+import { Job } from "../interfaces/Job";
 
 interface JobListingProps {
   job: Job;
@@ -49,12 +50,12 @@ const JobListing = ({ job }: JobListingProps) => {
             <FaMapMarker className='inline mr-1 fa-solid fa-location-dot text-lg' />
             {location}
           </div>
-          <a
-            href={`/job/${id}`}
+          <Link
+            to={`/job/${id}`}
             className='h-[36px] bg-indigo-500 hover:bg-indigo-600 text-white px-4 py-2 rounded-lg text-center text-sm'
           >
             Read More
-          </a>
+          </Link>
         </div>
       </div>
     </div>
