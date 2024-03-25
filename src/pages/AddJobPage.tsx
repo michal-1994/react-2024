@@ -1,6 +1,7 @@
 /** @format */
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+
 import { Job } from "../interfaces/Job";
 
 interface AddJobPageProps {
