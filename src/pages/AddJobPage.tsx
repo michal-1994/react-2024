@@ -1,7 +1,13 @@
 /** @format */
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Job } from "../interfaces/Job";
 
-const AddJobPage = () => {
+interface AddJobPageProps {
+  addJobSubmit: (newJob: Job) => void;
+}
+
+const AddJobPage = ({ addJobSubmit }: AddJobPageProps) => {
   const [title, setTitle] = useState<string>("");
   const [type, setType] = useState<string>("Full-Time");
   const [location, setLocation] = useState<string>("");
@@ -11,6 +17,8 @@ const AddJobPage = () => {
   const [companyDescription, setCompanyDescription] = useState<string>("");
   const [contactEmail, setContactEmail] = useState<string>("");
   const [contactPhone, setContactPhone] = useState<string>("");
+
+  const navigate = useNavigate();
 
   const submitHandler = (event: any) => {
     event.preventDefault();
@@ -29,7 +37,9 @@ const AddJobPage = () => {
       },
     };
 
-    console.log(newJob);
+    addJobSubmit(newJob);
+
+    return navigate("/jobs");
   };
 
   return (
