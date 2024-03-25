@@ -47,7 +47,7 @@ const JobListing = ({ job }: JobListingProps) => {
 
         <div className='flex flex-col lg:flex-row justify-between mb-4'>
           <div className='text-orange-700 mb-3'>
-            <FaMapMarker className='inline mr-1 fa-solid fa-location-dot text-lg' />
+            <FaMapMarker className='inline mr-1 text-lg' />
             {location}
           </div>
           <Link
