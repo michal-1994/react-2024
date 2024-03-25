@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import JobListing from "./JobListing";
 import Spinner from "./Spinner";
 
-import { API_URL } from "../constatns/api";
 import { Job } from "../interfaces/Job";
 
 interface JobListingsProps {
@@ -20,7 +19,7 @@ const JobListings = ({ isHome }: JobListingsProps) => {
 
     const fetchJobs = async () => {
       try {
-        const res = await fetch(`${API_URL}/jobs${jobsQuery}`);
+        const res = await fetch(`/api/jobs${jobsQuery}`);
         const data = await res.json();
         setJobs(data);
       } catch (err) {
