@@ -1,6 +1,5 @@
 /**
  * @format
- * @htmlFormat
  */
 
 const AddJobPage = () => {
