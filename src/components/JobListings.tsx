@@ -1,8 +1,8 @@
 /** @format */
+import JobListing from "./JobListing";
 
 import { Job } from "../interfaces/Job";
 import jobs from "../jobs.json";
-import JobListing from "./JobListing";
 
 const JobListings = () => {
   const recentJobs = jobs.slice(0, 3);
