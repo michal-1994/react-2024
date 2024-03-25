@@ -1,5 +1,5 @@
 /** @format */
-import { Link, useLoaderData } from "react-router-dom";
+import { Link, useLoaderData, useNavigate } from "react-router-dom";
 import { FaArrowLeft, FaMapMarker } from "react-icons/fa";
 
 const jobLoader = async ({ params }: any) => {
@@ -7,9 +7,25 @@ const jobLoader = async ({ params }: any) => {
   return await res.json();
 };
 
-const JobPage = () => {
+interface JobPageProps {
+  deleteJob: (id: string) => void;
+}
+
+const JobPage = ({ deleteJob }: JobPageProps) => {
   const job: any = useLoaderData();
   const { id, title, type, location, description, salary, company } = job;
+
+  const navigate = useNavigate();
+
+  const onDeleteClick = (jobId: string) => {
+    const confirm = window.confirm("Are you sure you want to delete?");
+
+    if (!confirm) return;
+
+    deleteJob(jobId);
+
+    return navigate("/jobs");
+  };
 
   return (
     <>
@@ -87,7 +103,10 @@ const JobPage = () => {
                 >
                   Edit Job
                 </Link>
-                <button className='bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline mt-4 block'>
+                <button
+                  onClick={() => onDeleteClick(id)}
+                  className='bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline mt-4 block'
+                >
                   Delete Job
                 </button>
               </div>
