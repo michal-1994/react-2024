@@ -7,12 +7,13 @@ import {
 } from "react-router-dom";
 
 import AddJobPage from "./pages/AddJobPage";
+import EditJobPage from "./pages/EditJobPage";
 import HomePage from "./pages/HomePage";
+import JobPage, { jobLoader } from "./pages/JobPage";
 import JobsPage from "./pages/JobsPage";
 import MainLayout from "./layouts/MainLayout";
 import NotFoundPage from "./pages/NotFoundPage";
-import JobPage, { jobLoader } from "./pages/JobPage";
-import { addJob, deleteJob } from "./api/job";
+import { addJob, deleteJob, updateJob } from "./api/job";
 
 const App = () => {
   const router = createBrowserRouter(
@@ -26,6 +27,11 @@ const App = () => {
           loader={jobLoader}
         />
         <Route path='/add-job' element={<AddJobPage addJobSubmit={addJob} />} />
+        <Route
+          path='/edit-job/:id'
+          element={<EditJobPage updateJobSubmit={updateJob} />}
+          loader={jobLoader}
+        />
         <Route path='*' element={<NotFoundPage />} />
       </Route>
     )
