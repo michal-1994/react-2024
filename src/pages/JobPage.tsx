@@ -1,7 +1,6 @@
 /** @format */
 import { Link, useLoaderData, useNavigate } from "react-router-dom";
 import { FaArrowLeft, FaMapMarker } from "react-icons/fa";
-import { toast } from "react-toastify";
 
 const jobLoader = async ({ params }: any) => {
   const res = await fetch(`/api/jobs/${params.id}`);
@@ -24,8 +23,6 @@ const JobPage = ({ deleteJob }: JobPageProps) => {
     if (!confirm) return;
 
     deleteJob(jobId);
-
-    toast.success("Job deleted successfully");
 
     return navigate("/jobs");
   };

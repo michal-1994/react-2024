@@ -12,27 +12,9 @@ import JobsPage from "./pages/JobsPage";
 import MainLayout from "./layouts/MainLayout";
 import NotFoundPage from "./pages/NotFoundPage";
 import JobPage, { jobLoader } from "./pages/JobPage";
-import { Job } from "./interfaces/Job";
+import { addJob, deleteJob } from "./api/job";
 
 const App = () => {
-  // Add Job
-  const addJob = async (newJob: Job) => {
-    return await fetch("/api/jobs", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newJob),
-    });
-  };
-
-  // Delete Job
-  const deleteJob = async (jobId: string) => {
-    return await fetch(`/api/jobs/${jobId}`, {
-      method: "DELETE",
-    });
-  };
-
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path='/' element={<MainLayout />}>
